@@ -5,8 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C*-road</title>
+    <link rel="stylesheet" href="./style.css">
+
 </head>
 <body>
-    
+    <div>
+        <p>C*-road</p>
+    </div>
+    <div>
+        <canvas id="game-board" width="780px" height="780px"></canvas>
+    </div>
+    <script src="./js/main.js"></script>
+    <script src="./js/ai.js"></script>
+    <script>
+        const context = document.getElementById("game-board").getContext('2d');
+        gameStart(context);
+        console.log(context);
+    </script>
 </body>
 </html>

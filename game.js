@@ -1,6 +1,0 @@
-/**
- * Game
- */
-function Game() {
-    
-}
