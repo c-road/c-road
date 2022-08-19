@@ -1,3 +1,6 @@
+
+
+
 /**
  * 
  * @param {JSON} _state ゲーム盤の状態
@@ -6,7 +9,14 @@
 function rendering(_state, _ctx) {
     _ctx.fillStyle = "#ababba";
     _ctx.beginPath();
-    _ctx.fillRect(0,0,boardSize,boardSize);
+    _ctx.fillRect(0, 0, boardSize, boardSize);
+
+    /**
+    * ゲーム盤
+    * @type {CanvasRenderingContext2D} cache 
+    */
+    // let cache = document.createElement("game-bord");
+
 
     for (let x = 0; x < columns; x++) {
         for (let y = 0; y < columns; y++) {
@@ -16,5 +26,5 @@ function rendering(_state, _ctx) {
 
         }
     }
-    
+
 }

@@ -116,7 +116,7 @@ function configurEventHandlers() {
     } else {
         console.log("notTouchDevice");
     }
-    // ctx.canvas.addEventListener('mousemove', mouseMoveEvent);
+    ctx.canvas.addEventListener('mousemove', mouseMoveEvent);
     // ctx.canvas.addEventListener('mouseup', mouseClickEvent);
 }
 
@@ -136,7 +136,7 @@ function touchEvent() {
 function mouseMoveEvent(_mousEvent) {
     current_state.selected = calculatePoinerPosition(_mousEvent);
     //描画
-    console.log("mouseMove");
+    // console.log("mouseMove");
     rendering(current_state, ctx);
 }
 
