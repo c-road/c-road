@@ -112,13 +112,21 @@ function configurEventHandlers() {
     if (isTouchDevice) {
         console.log("TouchDevice");
         ctx.canvas.addEventListener('touchstart', mouseClickEvent);
+        // ctx.canvas.addEventListener('touchstart', mouseClickEvent);
     } else {
         console.log("notTouchDevice");
     }
-    ctx.canvas.addEventListener('mousemove', mouseMoveEvent);
-    ctx.canvas.addEventListener('mouseup', mouseClickEvent);
+    // ctx.canvas.addEventListener('mousemove', mouseMoveEvent);
+    // ctx.canvas.addEventListener('mouseup', mouseClickEvent);
 }
 
+
+/**
+ * タッチイベントが起きたときに，それがタップなのかスクロールなのかを判断する．
+ */
+function touchEvent() {
+
+}
 
 
 /**
@@ -128,6 +136,7 @@ function configurEventHandlers() {
 function mouseMoveEvent(_mousEvent) {
     current_state.selected = calculatePoinerPosition(_mousEvent);
     //描画
+    console.log("mouseMove");
     rendering(current_state, ctx);
 }
 
@@ -139,7 +148,8 @@ function mouseMoveEvent(_mousEvent) {
  * @param {MouseEvent} _mousEvent 
  */
 function mouseClickEvent(_mousEvent) {
-    current_state.selected = calculatePoinerPosition(_mousEvent);
+    current_state.selected = calculatePoinerPosition(_mousEvent,"moveEvents");
+    console.log("mouseClick");
     // おけるかどうか
     //おけるなら
     // おける数字のボタンを画面に表示
@@ -157,8 +167,9 @@ function mouseClickEvent(_mousEvent) {
 /**
  * 
  * @param {MouseEvent} _mousEvent
+ * @param {isClick} _isClick
  */
-function calculatePoinerPosition(_mousEvent) {
+function calculatePoinerPosition(_mousEvent,_isClick) {
     let bound = _mousEvent.target.getBoundingClientRect();
     // current_state.selected.x = _mousEvent.clientX -bound.left;
     // current_state.selected.x = _mousEvent.clientY -bound.top;
@@ -167,6 +178,12 @@ function calculatePoinerPosition(_mousEvent) {
     mousePointer.y = _mousEvent.clientY - bound.top;
     // console.log(mousePointer);
     current_state.selected = Math.floor(mousePointer.y / cellSize) * columns + Math.floor(mousePointer.x / cellSize);
-    console.log(current_state.selected);
+    let moveOrClick;
+    if (_isClick){
+        moveOrClick = "click";
+    }else {
+        moveOrClick = "Move"
+    }
+    console.log(current_state.selected,moveOrClick);
     //MouseEventの内容から，マウスポインターが現在どのマス目にあるのか調べる．
 }

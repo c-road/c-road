@@ -1,19 +1,39 @@
 body{
     font-family: 'BioRhyme', serif;
     background-color: #ffaec950;
+
+
 }
 
 #title{
-    font-size: 123px;
+    font-size: 89px;
     position: absolute;
+    z-index: -1;
+    color: #42465d;
+}
+/*
+@media screen and (min-width:800px) {
+    #title{
+        font-size: 120px;        
+    }
+    #game-board{
+height: 90%;
+    }
 }
 
+
+#container{
+    overflow: scroll;
+}*/
 #game-board{
     position: absolute;
     display: flex;
+    height: 100%;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     margin: auto;
 }
+
+
