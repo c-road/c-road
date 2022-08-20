@@ -43,6 +43,7 @@ let mousePointer = {
     y: 0
 }
 
+let mouseCell = 0;
 /**
  * ゲーム盤の初期値，不可変．
  * @type JSON
@@ -63,7 +64,7 @@ const initial_state = {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     ],
     turn: 1,      // 先攻 => 1, 後攻 => -1
-    selected: {},   //マウスのカーソルのあるマスの位置 左上から右に向かって，0,1,2,3,4,···12,13,14,15,···167,168 となる．
+    selected: 0,   //マウスのカーソルのあるマスの位置 左上から右に向かって，0,1,2,3,4,···12,13,14,15,···167,168 となる．
 }
 
 
@@ -151,7 +152,7 @@ function mouseClickEvent(_mousEvent) {
     current_state.selected = calculatePoinerPosition(_mousEvent,"moveEvents");
     console.log("mouseClick");
     // おけるかどうか
-    //おけるなら
+    // おけるなら
     // おける数字のボタンを画面に表示
     // 押されたボタンの番号を処理系に渡す．
     // 置いた後の盤の状態が戻ってきたら，
@@ -171,12 +172,8 @@ function mouseClickEvent(_mousEvent) {
  */
 function calculatePoinerPosition(_mousEvent,_isClick) {
     let bound = _mousEvent.target.getBoundingClientRect();
-    // current_state.selected.x = _mousEvent.clientX -bound.left;
-    // current_state.selected.x = _mousEvent.clientY -bound.top;
-    // console.log(current_state);
     mousePointer.x = _mousEvent.clientX - bound.left;
     mousePointer.y = _mousEvent.clientY - bound.top;
-    // console.log(mousePointer);
     current_state.selected = Math.floor(mousePointer.y / cellSize) * columns + Math.floor(mousePointer.x / cellSize);
     let moveOrClick;
     if (_isClick){
@@ -186,4 +183,5 @@ function calculatePoinerPosition(_mousEvent,_isClick) {
     }
     console.log(current_state.selected,moveOrClick);
     //MouseEventの内容から，マウスポインターが現在どのマス目にあるのか調べる．
+    return current_state.selected;
 }
