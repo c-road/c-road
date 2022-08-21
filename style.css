@@ -37,4 +37,20 @@ height: 90%;
     color: #e3e1e1;
 }
 
+#numberInputButton p{
+    z-index: -10;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    /* display: flex; */
+    /* text-align: center; */
+}
 
+
+#numberInputButton p{
+    margin: auto;
+    text-align: center;
+}

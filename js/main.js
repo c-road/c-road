@@ -82,7 +82,7 @@ let current_state = {};
 function gameStart(_ctx) {
     ctx = _ctx
     current_state = deepCopy(initial_state);
-    console.log(current_state);
+    // console.log(current_state);
     if (!isConfirmed) {
         isConfirmed = true;
         //イベントハンドラをセット
@@ -118,7 +118,7 @@ function configurEventHandlers() {
         console.log("notTouchDevice");
     }
     ctx.canvas.addEventListener('mousemove', mouseMoveEvent);
-    // ctx.canvas.addEventListener('mouseup', mouseClickEvent);
+    ctx.canvas.addEventListener('mouseup', mouseClickEvent);
 }
 
 
@@ -149,8 +149,11 @@ function mouseMoveEvent(_mousEvent) {
  * @param {MouseEvent} _mousEvent 
  */
 function mouseClickEvent(_mousEvent) {
-    current_state.selected = calculatePoinerPosition(_mousEvent,"moveEvents");
-    console.log("mouseClick");
+    current_state.selected = calculatePoinerPosition(_mousEvent, "moveEvents");
+    console.log("mouseClick", current_state.selected);
+    if (true){
+        current_state.map[0]
+    }
     // おけるかどうか
     // おけるなら
     // おける数字のボタンを画面に表示
@@ -170,18 +173,18 @@ function mouseClickEvent(_mousEvent) {
  * @param {MouseEvent} _mousEvent
  * @param {isClick} _isClick
  */
-function calculatePoinerPosition(_mousEvent,_isClick) {
+function calculatePoinerPosition(_mousEvent, _isClick) {
     let bound = _mousEvent.target.getBoundingClientRect();
     mousePointer.x = _mousEvent.clientX - bound.left;
     mousePointer.y = _mousEvent.clientY - bound.top;
     current_state.selected = Math.floor(mousePointer.y / cellSize) * columns + Math.floor(mousePointer.x / cellSize);
     let moveOrClick;
-    if (_isClick){
+    if (_isClick) {
         moveOrClick = "click";
-    }else {
+    } else {
         moveOrClick = "Move"
     }
-    console.log(current_state.selected,moveOrClick);
+    console.log(current_state.selected, moveOrClick);
     //MouseEventの内容から，マウスポインターが現在どのマス目にあるのか調べる．
     return current_state.selected;
 }
