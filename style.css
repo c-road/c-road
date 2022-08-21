@@ -21,10 +21,10 @@ height: 90%;
     }
 }
 
-
+*/
 #container{
     overflow: scroll;
-}*/
+}
 #game-board{
     position: absolute;
     display: flex;
