@@ -112,7 +112,7 @@ function configurEventHandlers() {
     const isTouchDevice = ('ontouchstart' in window);
     if (isTouchDevice) {
         console.log("TouchDevice");
-        ctx.canvas.addEventListener('touchstart', mouseClickEvent);
+        ctx.canvas.addEventListener('touchend', mouseClickEvent);
         // ctx.canvas.addEventListener('touchstart', mouseClickEvent);
     } else {
         console.log("notTouchDevice");
