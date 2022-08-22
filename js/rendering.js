@@ -20,17 +20,17 @@ function rendering(_state, _ctx) {
     _ctx.fillRect(cellSize * cellX + 2, cellSize * cellY + 2, cellSize - 4, cellSize - 4);
 
 
-    current_state.map[13] = 5;
+    // _state.map[160] = 5;
 
 
-
-    console.log(current_state.map);
+    console.log(_state.map[1]);
+    console.log(_state.map);
     console.log("111");
     for (let x = 0; x < columns; x++) {
         for (let y = 0; y < columns; y++) {
-            // console.log("あいう",x, y, current_state.map[y * columns + x])
-            if (current_state.map[y * columns + x] != 0) {
-                drawRoad(_ctx, current_state.map[y * columns + x], x, y);
+            // console.log("あいう",x, y, _state.map[y * columns + x])
+            if (_state.map[y * columns + x] != 0) {
+                drawRoad(_ctx, _state.map[y * columns + x], x, y);
             }
         }
     }
@@ -86,7 +86,7 @@ function drawRoad(_ctx, roadNumber, cellX, cellY) {
     let xGap;
     let yGap;
     if (numberDigit == 1) {
-        [xGap, yGap] = [11, -8];
+        [xGap, yGap] = [11, 30];
     } else if (numberDigit == 2) {
         [xGap, yGap] = [5, 30];
     }

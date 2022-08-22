@@ -2,6 +2,8 @@ const BOARD_COLOR = '#'
 const BORDER_COLOR = '#'
 const USER1_COLOR = '#'
 const USER2_COLOR = '#'
+const BACKGROUND_COLOR = '#'
+// const 
 
 
 
@@ -95,6 +97,7 @@ function gameStart(_ctx) {
         //イベントハンドラをセット
         configurEventHandlers();
     }
+    console.log(current_state)
     rendering(current_state, ctx);
 }
 
@@ -160,10 +163,10 @@ function mouseClickEvent(_mousEvent) {
     current_state.selected = calculatePoinerPosition(_mousEvent, "moveEvents");
     console.log("mouseClick");
 
-
+    let putRoadNumber;
     if (true) { // 引数 current_state おけるかどうかの判断．
         current_state.map[current_state.selected]
-        let putRoadNumber = window.prompt("このマスに置く道の番号は？ \n " + calculateCurrentCell(current_state.selected));
+        putRoadNumber = window.prompt("このマスに置く道の番号は？ \n " + calculateCurrentCell(current_state.selected));
         if (putRoadNumber === null) {
             console.log("value is null");
         } else if (putRoadNumber === "") {
@@ -179,6 +182,11 @@ function mouseClickEvent(_mousEvent) {
         //現在の盤の状況と入力された数値を渡す．　引数 current_state, roadNumber
         // current_state = 出力
     }
+    //とりあえず描画テスト
+    current_state.map[current_state.selected] = putRoadNumber;
+
+    // ここまで
+
     rendering(current_state, ctx);
     // おけるかどうか
     // おけるなら
