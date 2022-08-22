@@ -1,3 +1,10 @@
+const BOARD_COLOR = '#'
+const BORDER_COLOR = '#'
+const USER1_COLOR = '#'
+const USER2_COLOR = '#'
+
+
+
 /**
  * マス目の数
 
@@ -113,6 +120,7 @@ function configurEventHandlers() {
     if (isTouchDevice) {
         console.log("TouchDevice");
         ctx.canvas.addEventListener('touchend', mouseClickEvent);
+        ctx.canvas.addEventListener('touchmove', touchEvent);
         // ctx.canvas.addEventListener('touchstart', mouseClickEvent);
     } else {
         console.log("notTouchDevice");
