@@ -9,7 +9,7 @@ const columns = 13;
  * ゲーム盤の一つの辺の大きさ（px）
  * @type {number}
  */
-const boardSize = 780;
+const boardSize = document.getElementById("game-board").clientWidth;
 
 
 /**
@@ -150,9 +150,11 @@ function mouseMoveEvent(_mousEvent) {
  */
 function mouseClickEvent(_mousEvent) {
     current_state.selected = calculatePoinerPosition(_mousEvent, "moveEvents");
-    console.log("mouseClick", current_state.selected);
+    console.log("mouseClick");
+    alert(calculateCurrentCell(current_state.selected));
+
     if (true){
-        current_state.map[0]
+        current_state.map[current_state.selected]
     }
     // おけるかどうか
     // おけるなら
