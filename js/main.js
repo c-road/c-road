@@ -151,11 +151,27 @@ function mouseMoveEvent(_mousEvent) {
 function mouseClickEvent(_mousEvent) {
     current_state.selected = calculatePoinerPosition(_mousEvent, "moveEvents");
     console.log("mouseClick");
-    alert(calculateCurrentCell(current_state.selected));
 
-    if (true){
+
+    if (true) { // 引数 current_state おけるかどうかの判断．
         current_state.map[current_state.selected]
+        let putRoadNumber = window.prompt("このマスに置く道の番号は？ \n " + calculateCurrentCell(current_state.selected));
+        if (putRoadNumber === null) {
+            console.log("value is null");
+        } else if (putRoadNumber === "") {
+            console.log("value is empty");
+        } else {
+            console.log(+putRoadNumber);
+            if (!Number.isInteger(+putRoadNumber)) {
+                alert("整数を入力してください．");
+            }
+        }
+        putRoadNumber = +putRoadNumber;
+
+        //現在の盤の状況と入力された数値を渡す．　引数 current_state, roadNumber
+        // current_state = 出力
     }
+    rendering(current_state, ctx);
     // おけるかどうか
     // おけるなら
     // おける数字のボタンを画面に表示
@@ -173,7 +189,7 @@ function mouseClickEvent(_mousEvent) {
 /**
  * 
  * @param {MouseEvent} _mousEvent
- * @param {isClick} _isClick
+ * @param {boolean} _isClick
  */
 function calculatePoinerPosition(_mousEvent, _isClick) {
     let bound = _mousEvent.target.getBoundingClientRect();

@@ -19,11 +19,18 @@ function rendering(_state, _ctx) {
     let [cellX, cellY] = calculateCurrentCell(current_state.selected);
     _ctx.fillRect(cellSize * cellX + 2, cellSize * cellY + 2, cellSize - 4, cellSize - 4);
 
+
+    current_state.map[13] = 5;
+
+
+
+    console.log(current_state.map);
+    console.log("111");
     for (let x = 0; x < columns; x++) {
         for (let y = 0; y < columns; y++) {
-            console.log("あいう",x, y, current_state.map[y * columns + x])
+            // console.log("あいう",x, y, current_state.map[y * columns + x])
             if (current_state.map[y * columns + x] != 0) {
-                drawRoad(_ctx, x, x, y);
+                drawRoad(_ctx,current_state.map[y * columns + x] ,x, y);
             }
         }
     }
@@ -48,5 +55,16 @@ function calculateCurrentCell(_cellNumber) {
 
 
 function drawRoad(_ctx, roadNumber, cellX, cellY) {
-    console.log("_ctx");
+    if (roadNumber<0){
+        _ctx.fillStyle = "#9b9dcc"
+    }else{
+        _ctx.fillStyle = "#cc9bb4"
+    }
+    console.log("aaaaaaaaa_ctx");
+    _ctx.fillRect(cellSize * cellX + 4, cellSize * cellY + 4, cellSize - 8, cellSize - 8);
+    ctx.fillStyle = "#000000"
+    ctx.font = '38px sans'
+    ctx.fillText(Math.abs(roadNumber), cellX*cellSize +10, cellY*cellSize * 2 - 7);
+
+
 }
