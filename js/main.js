@@ -1,8 +1,12 @@
-const BOARD_COLOR = '#'
-const BORDER_COLOR = '#'
-const USER1_COLOR = '#'
-const USER2_COLOR = '#'
-const BACKGROUND_COLOR = '#'
+const BOARD_COLOR = '#ffffff';
+const SELECTED_CELL_COLOR = '#aaaaaa';
+const BORDER_COLOR = '#004545';
+const USER1_COLOR = '#1663c7';
+const USER2_COLOR = "#c71671";
+const LOAD_COLOR1 = 'rgba(68,129,252,0.686)';
+const LOAD_COLOR2 = 'rgba(252,71,68,0.686)';
+
+// const BACKGROUND_COLOR = '#' //--> これはCSSで設定
 // const 
 
 
@@ -61,13 +65,13 @@ const initial_state = {
     map: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 1000, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, -1000, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -98,6 +102,15 @@ function gameStart(_ctx) {
         configurEventHandlers();
     }
     console.log(current_state)
+
+    let cellNumberList = [-13, -1, 1, 13];
+    let cellListIndex = [Math.floor(Math.random() * 4), Math.floor(Math.random() * 4)]
+    let nextCellNumber1 = 42 + cellNumberList[cellListIndex[0]];
+    let nextCellNumber2 = 126 + cellNumberList[cellListIndex[1]];
+    current_state.map[nextCellNumber1] = [1000];
+    current_state.map[nextCellNumber2] = [-1000];
+
+
     rendering(current_state, ctx);
 }
 
@@ -122,7 +135,7 @@ function configurEventHandlers() {
     const isTouchDevice = ('ontouchstart' in window);
     if (isTouchDevice) {
         console.log("TouchDevice");
-        ctx.canvas.addEventListener('touchend', mouseClickEvent);
+        // ctx.canvas.addEventListener('touchend', mouseClickEvent);
         ctx.canvas.addEventListener('touchmove', touchEvent);
         // ctx.canvas.addEventListener('touchstart', mouseClickEvent);
     } else {

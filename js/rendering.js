@@ -9,12 +9,12 @@ function rendering(_state, _ctx) {
     _ctx.fillRect(0, 0, boardSize, boardSize);
     for (let x = 0; x < columns; x++) {
         for (let y = 0; y < columns; y++) {
-            _ctx.strokeStyle = "#454545";
+            _ctx.strokeStyle = BORDER_COLOR;
             _ctx.beginPath();
             _ctx.strokeRect(x * cellSize, y * cellSize, cellSize, cellSize);
         }
     }
-    _ctx.fillStyle = "#e3e1e1"
+    _ctx.fillStyle = SELECTED_CELL_COLOR;
     _ctx.beginPath();
     let [cellX, cellY] = calculateCurrentCell(current_state.selected);
     _ctx.fillRect(cellSize * cellX + 2, cellSize * cellY + 2, cellSize - 4, cellSize - 4);
@@ -75,11 +75,12 @@ function drawRoad(_ctx, roadNumber, cellX, cellY) {
     */
     if (Math.abs(roadNumber) === 1000) {
         //Load描画
+        drawLoad(_ctx, cellY * 13 + cellX, roadNumber);
         console.log("Load");
     } else if (roadNumber < 0) {
-        _ctx.fillStyle = "#1663c7"
+        _ctx.fillStyle = USER1_COLOR;
     } else {
-        _ctx.fillStyle = "#c71671"
+        _ctx.fillStyle = USER2_COLOR;
     }
 
     const numberDigit = String(Math.abs(roadNumber)).length;
@@ -90,9 +91,36 @@ function drawRoad(_ctx, roadNumber, cellX, cellY) {
     } else if (numberDigit == 2) {
         [xGap, yGap] = [5, 30];
     }
-    console.log("x:",xGap + " y:" + yGap);
+    console.log("x:", xGap + " y:" + yGap);
     ctx.font = '30px sans'
     ctx.fillText(Math.abs(roadNumber), cellX * cellSize + xGap, cellY * cellSize + yGap);
 
     // _ctx.fillRect(cellSize * cellX + 4, cellSize * cellY + 4, cellSize - 8, cellSize - 8);
+}
+
+/**
+ * Loadを描画する
+ * @param {CanvasRenderingContext2D} _ctx 描画先のcanvas
+ * @param {Array} _cellNumber セル番号1
+ */
+function drawLoad(_ctx, _cellNumber,roadNumber) {
+    // let cellNumberList = [-13, -1, 1, 13];
+    // cellListIndex = Math.floor(Math.random() * 4);
+
+    if (roadNumber > 0) {
+        _ctx.fillStyle = LOAD_COLOR1;
+    } else {
+        _ctx.fillStyle = LOAD_COLOR2;
+    }
+    _ctx.beginPath();
+    let [cellX, cellY] = calculateCurrentCell(_cellNumber);
+    _ctx.fillRect(cellSize * cellX, cellSize * cellY, cellSize, cellSize);
+
+
+    // // _ctx.fillStyle = LOAD_COLOR2;
+    // _ctx.beginPath();
+    // [cellX, cellY] = calculateCurrentCell(_cellNumber + cellNumberList[cellListIndex]);
+    // _ctx.fillRect(cellSize * cellX, cellSize * cellY, cellSize, cellSize);
+
+
 }
