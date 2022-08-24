@@ -1,6 +1,6 @@
 body{
     font-family: 'BioRhyme', serif;
-    background-color: #ffaec950;
+    background-color: rgba(255, 174, 201, 0.314);
 
 
 }
@@ -34,7 +34,8 @@ height: 90%;
     right: 0;
     bottom: 0;
     margin: auto;
-    color: #e3e1e1;
+    /* color: #4481fcaf; */
+    
 }
 
 #numberInputButton p{
