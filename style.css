@@ -118,6 +118,7 @@ a:active {
 .buttonName {
     margin: auto;
     font-family: 'Noto Serif JP', serif;
+    width: 50px;
 }
 
 .buttonContainer {
@@ -139,17 +140,92 @@ a:active {
 .button {
     width: 100px;
     padding: 5px 4px;
-    border-top: solid 0.5px #444444;
-    border-bottom: solid 0.5px #444444;
+    border: solid 0.5px #444444;
+    border-bottom: solid 2px #444444;
     margin: 7px 7px;
-
     cursor: pointer;
 }
 
-.url{
+.button a {
+    display: block;
+}
+
+.button:hover {
+    background-color: #454545;
+    color: #fff;
+    transition: 0.4s;
+}
+
+.url {
     font-size: 10px;
     margin: 5px;
 }
+
+#share {
+    margin: 15px;
+    display: flex;
+    /* flex-directioolumn; */
+    justify-content: space-around;
+    border: 0.5px dashed #454545;
+}
+
+#share a {
+
+    padding: none;
+    display: block;
+}
+
+/* 
+.winner {
+ 
+
+} */
+
+.winnerWindow {
+    /* visibility: visible; */
+    visibility: hidden;
+    margin: auto;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-weight: 200;
+    padding: 15px;
+    font-size: 40px;
+
+}
+
+.restartButton {
+    font-size: 20px;
+    padding: 5px 4px;
+    border: solid 0.5px #444444;
+    border-bottom: solid 2px #444444;
+    margin: 7px 7px;
+    cursor: pointer;
+
+}
+
+.restartButton:hover {
+    background-color: #454545;
+    color: #fff;
+    transition: 0.4s;
+}
+
+.red {
+    visibility: visible;
+    background-color: #c71671;
+}
+
+.blue {
+    visibility: visible;
+    background-color: #1663c7;
+}
+
+/* #winner { */
+/* background-color: rgb(255, 0, 0); */
+/* } */
 
 @media screen and (min-width:675px) {
     /* #title {
@@ -164,8 +240,8 @@ a:active {
         margin: 10px;
     }
 
-    .buttonName{
+    .buttonName {
         margin: auto 5px;
     }
 
- } 
+}

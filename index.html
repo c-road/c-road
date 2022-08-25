@@ -36,24 +36,33 @@
                 <!-- <img src="./img/C-road2.png" alt="" width=80%> -->
                 <div class="buttonContainer">
                     <div id="computer" class="button newGame" onclick="">Computer</div>
-                    <div class="buttonName">対戦相手</div>
+                    <div class="buttonName">対戦</div>
                     <div id="human" class="button newGame">Human</div>
                 </div>
                 <div class="buttonContainer">
-                    <div class="button">
-                        <a href="#" target="_blank" rel="noopener noreferrer">PDF</a>
-                    </div>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="button">PDF</a>
                     <div class="buttonName">遊び方</div>
-                    <div class="button">
-                        <a href="#" target="_blank" rel="noopener noreferrer">Movie</a>
-                    </div>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="button">Movie</a>
                 </div>
-                <p class="url">
+                <div id="share">
+                    <!-- <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button button"
+                        data-show-count="false" target="_blank">Tweet</a> -->
+                    <a href="https://twitter.com/share?ref_src=https://c-road.github.io" class="twitter-share-button button"
+                        data-show-count="false" target="_blank">Tweet</a>
+                    <!-- <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
+                    <a href="https://social-plugins.line.me/lineit/share?url=https://c-road.github.io" target="_blank"
+                        rel="nofollow noopener noreferrer" class="button">LINE</a>
+                </div>
+                <div class="url">
                     <a href="https://github.com/c-road/c-road.github.io"
                         target="_blank">https://github.com/c-road/c-road.github.io</a>
-                </p>
+                </div>
             </div>
         </div>
+    </div>
+    <div id="winnerWindow" class="winnerWindow">
+        <div id="winner"></div>
+        <div id="restartButton" class="restartButton">restart</div>
     </div>
 
     <!-- <div id="numberInputButton"> -->
@@ -87,13 +96,24 @@
         const computer = document.getElementById('computer');
         const human = document.getElementById('human');
         const modalBackground = document.getElementById('modalBackground');
-        const toggle = [computer, human];
+        const restartButton = document.getElementById('restartButton');
 
-        for (let i = 0, len = toggle.length; i < len; i++) {
-            toggle[i].addEventListener('click', function () {
-                modalArea.classList.toggle('showModal');
-            }, false);
-        }
+        computer.addEventListener('click', function () {
+            modalArea.classList.toggle('showModal');
+            clickGameButton("computer");
+        }, false);
+
+        human.addEventListener('click', function () {
+            modalArea.classList.toggle('showModal');
+            clickGameButton("human");
+        }, false);
+
+        restartButton.addEventListener('click', function () {
+            modalArea.classList.toggle('showModal');
+            document.getElementById('winner').setAttribute('class', "winner");
+            document.getElementById('winnerWindow').setAttribute('class', "winnerWindow");
+            demoGame();
+        }, false);
 
         demoGame();
     </script>

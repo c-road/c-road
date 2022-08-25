@@ -77,8 +77,31 @@ const initial_state = {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     ],
     turn: 1,      // 先攻 => 1, 後攻 => -1
-    selected: 0,   //マウスのカーソルのあるマスの位置 左上から右に向かって，0,1,2,3,4,···12,13,14,15,···167,168 となる．
+    selected: -1,   //マウスのカーソルのあるマスの位置 左上から右に向かって，0,1,2,3,4,···12,13,14,15,···167,168 となる．
+    winner: 0,
+    type: undefined,
 }
+
+
+
+// const initial_state = {
+//     map: [   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+//              0,    0,    0, 1000,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+//              0,    0,    0,    0,    0,    0,    0,    0,    0,-1000,    0,    0,    0,
+//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+//     ],
+//     turn: 1,      // 先攻 => 1, 後攻 => -1
+//     selected: -1,   //マウスのカーソルのあるマスの位置 左上から右に向かって，0,1,2,3,4,···12,13,14,15,···167,168 となる．
+// }
 
 
 /**
@@ -93,9 +116,10 @@ let current_state = {};
  * @param {CanvasRenderingContext2D} _ctx canvas
  * @param {String} type ゲームのタイプ; human, computer, demo
  */
-function gameStart(_ctx,type) {
+function gameStart(_ctx, type) {
     ctx = _ctx
     current_state = deepCopy(initial_state);
+    console.log("type: " + type);
     // console.log(current_state);
     if (!isConfirmed) {
         isConfirmed = true;
@@ -164,6 +188,9 @@ function mouseMoveEvent(_mousEvent) {
     //描画
     // console.log("mouseMove");
     rendering(current_state, ctx);
+    if (current_state.winner != 0) {
+        gameEnd(current_state.winner);
+    }
 }
 
 
@@ -176,43 +203,69 @@ function mouseMoveEvent(_mousEvent) {
 function mouseClickEvent(_mousEvent) {
     current_state.selected = calculatePoinerPosition(_mousEvent, "moveEvents");
     console.log("mouseClick");
+    if (current_state.winner != 0) {
+        gameEnd(current_state.winner);
+    } else {
+        console.log(current_state.winner);
+        let putRoadNumber;
 
-    let putRoadNumber;
-    if (true) { // 引数 current_state おけるかどうかの判断．
-        current_state.map[current_state.selected]
-        putRoadNumber = window.prompt("このマスに置く道の番号は？ \n " + calculateCurrentCell(current_state.selected));
-        if (putRoadNumber === null) {
-            console.log("value is null");
-        } else if (putRoadNumber === "") {
-            console.log("value is empty");
-        } else {
-            console.log(+putRoadNumber);
-            if (!Number.isInteger(+putRoadNumber)) {
-                alert("整数を入力してください．");
+        if (true) { // 引数 current_state おけるかどうかの判断．
+            current_state.map[current_state.selected]
+            putRoadNumber = window.prompt("このマスに置く道の番号は？ \n " + calculateCurrentCell(current_state.selected));
+            if (putRoadNumber === null) {
+                console.log("value is null");
+            } else if (putRoadNumber === "") {
+                console.log("value is empty");
+            } else {
+                console.log(+putRoadNumber);
+                if (!Number.isInteger(+putRoadNumber)) {
+                    alert("整数を入力してください．");
+                }
             }
+            putRoadNumber = +putRoadNumber;
+
+            //現在の盤の状況と入力された数値を渡す．　引数 current_state, roadNumber
+            // current_state = 出力
         }
-        putRoadNumber = +putRoadNumber;
+        //とりあえず描画テスト
+        current_state.map[current_state.selected] = putRoadNumber;
 
-        //現在の盤の状況と入力された数値を渡す．　引数 current_state, roadNumber
-        // current_state = 出力
+        // ここまで
+
+        //勝敗がついているか
+        if (false) {
+
+        }
+
+        // おけるかどうか
+        // おけるなら
+        // おける数字のボタンを画面に表示
+        // 入力された道路番号を処理系に渡す．
+        // 置いた後の盤の状態が戻ってきたら，
+        // 置いた後のstateをcurrent_stateに代入．
+        // state.turnにマイナス１を掛ける．
+        // 描画
+        // おけないなら
+        // 無視
+        rendering(current_state, ctx);
+
+        //AIが駒を動かす．
+        setTimeout(() => {
+            // Aiに，current_state.mapを渡す．
+            // 帰ってきた結果(map)を，current_state.mapに代入
+            // 描画する．
+        }, 200);
+
+        rendering(current_state, ctx);
+
+        //勝敗がついているか
+        if (false) {
+
+        }
+
     }
-    //とりあえず描画テスト
-    current_state.map[current_state.selected] = putRoadNumber;
-
-    // ここまで
-
-    rendering(current_state, ctx);
-    // おけるかどうか
-    // おけるなら
-    // おける数字のボタンを画面に表示
-    // 押されたボタンの番号を処理系に渡す．
-    // 置いた後の盤の状態が戻ってきたら，
-    // 置いた後のstateをcurrentStateに代入．
-    // state.turnにマイナス１を掛ける．
-    // 描画
-    // おけないなら
-    // 無視
 }
+
 
 
 
@@ -235,4 +288,14 @@ function calculatePoinerPosition(_mousEvent, _isClick) {
     console.log(current_state.selected, moveOrClick);
     //MouseEventの内容から，マウスポインターが現在どのマス目にあるのか調べる．
     return current_state.selected;
+}
+
+/**
+ * 勝ち負けを表示
+ * @param {string} winner red か blue
+ */
+function gameEnd(winner) {
+    document.getElementById("winner").innerHTML =
+        `The ${winner} wins!`
+    document.getElementById('winnerWindow').setAttribute('class', "winnerWindow " + winner);
 }
