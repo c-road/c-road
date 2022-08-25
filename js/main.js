@@ -5,15 +5,8 @@ const USER1_COLOR = '#1663c7';
 const USER2_COLOR = "#c71671";
 const LOAD_COLOR1 = 'rgba(68,129,252,0.686)';
 const LOAD_COLOR2 = 'rgba(252,71,68,0.686)';
-
-// const BACKGROUND_COLOR = '#' //--> これはCSSで設定
-// const 
-
-
-
 /**
  * マス目の数
-
  * @type number
  */
 const columns = 13;
@@ -23,7 +16,6 @@ const columns = 13;
  * @type {number}
  */
 const boardSize = document.getElementById("game-board").clientWidth;
-
 
 /**
  * ゲーム盤のセル一つのサイズ
@@ -37,15 +29,11 @@ const cellSize = boardSize / columns;
  */
 let isConfirmed = false;
 
-
-
 /**
  * canvas
  * @type {CanvasRenderingContext2D}
 */
 let ctx;
-
-
 
 /**
  * マウスのポインタのの位置
@@ -82,34 +70,11 @@ const initial_state = {
     type: undefined,
 }
 
-
-
-// const initial_state = {
-//     map: [   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-//              0,    0,    0, 1000,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-//              0,    0,    0,    0,    0,    0,    0,    0,    0,-1000,    0,    0,    0,
-//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-//              0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-//     ],
-//     turn: 1,      // 先攻 => 1, 後攻 => -1
-//     selected: -1,   //マウスのカーソルのあるマスの位置 左上から右に向かって，0,1,2,3,4,···12,13,14,15,···167,168 となる．
-// }
-
-
 /**
  * 現在のゲームの状況
  * @type JSON
  */
 let current_state = {};
-
 
 /**
  * HTML側から実行する関数．ゲームを実行．
@@ -123,23 +88,17 @@ function gameStart(_ctx, type) {
     // console.log(current_state);
     if (!isConfirmed) {
         isConfirmed = true;
-        //イベントハンドラをセット
-        configurEventHandlers();
+        configurEventHandlers();        //イベントハンドラをセット
     }
     console.log(current_state)
-
     let cellNumberList = [-13, -1, 1, 13];
     let cellListIndex = [Math.floor(Math.random() * 4), Math.floor(Math.random() * 4)]
     let nextCellNumber1 = 42 + cellNumberList[cellListIndex[0]];
     let nextCellNumber2 = 126 + cellNumberList[cellListIndex[1]];
     current_state.map[nextCellNumber1] = [1000];
     current_state.map[nextCellNumber2] = [-1000];
-
-
     rendering(current_state, ctx);
 }
-
-
 
 /**
  * deepCopy
@@ -150,7 +109,6 @@ function deepCopy(obj) {
     return JSON.parse(JSON.stringify(obj));
 }
 
-
 /**
  * イベントハンドラをセットする
  *     タッチデバイスなら，タッチをクリックとして扱う．
@@ -160,9 +118,7 @@ function configurEventHandlers() {
     const isTouchDevice = ('ontouchstart' in window);
     if (isTouchDevice) {
         console.log("TouchDevice");
-        // ctx.canvas.addEventListener('touchend', mouseClickEvent);
-        ctx.canvas.addEventListener('touchmove', touchEvent);
-        // ctx.canvas.addEventListener('touchstart', mouseClickEvent);
+        ctx.canvas.addEventListener('touchmove', touchEvent);        // ctx.canvas.addEventListener('touchend', mouseClickEvent);        // ctx.canvas.addEventListener('touchstart', mouseClickEvent);
     } else {
         console.log("notTouchDevice");
     }
@@ -170,14 +126,10 @@ function configurEventHandlers() {
     ctx.canvas.addEventListener('mouseup', mouseClickEvent);
 }
 
-
 /**
  * タッチイベントが起きたときに，それがタップなのかスクロールなのかを判断する．
  */
-function touchEvent() {
-
-}
-
+function touchEvent() {}
 
 /**
  * マウスが動いたときの処理．ポインターのあるセルの色を変える．
@@ -185,15 +137,11 @@ function touchEvent() {
  */
 function mouseMoveEvent(_mousEvent) {
     current_state.selected = calculatePoinerPosition(_mousEvent);
-    //描画
-    // console.log("mouseMove");
     rendering(current_state, ctx);
     if (current_state.winner != 0) {
         gameEnd(current_state.winner);
     }
 }
-
-
 
 /**
  * マウスがクリックされたときの処理．ゲームの根幹．
@@ -208,7 +156,6 @@ function mouseClickEvent(_mousEvent) {
     } else {
         console.log(current_state.winner);
         let putRoadNumber;
-
         if (true) { // 引数 current_state おけるかどうかの判断．
             current_state.map[current_state.selected]
             putRoadNumber = window.prompt("このマスに置く道の番号は？ \n " + calculateCurrentCell(current_state.selected));
@@ -223,20 +170,15 @@ function mouseClickEvent(_mousEvent) {
                 }
             }
             putRoadNumber = +putRoadNumber;
-
             //現在の盤の状況と入力された数値を渡す．　引数 current_state, roadNumber
             // current_state = 出力
         }
         //とりあえず描画テスト
         current_state.map[current_state.selected] = putRoadNumber;
-
         // ここまで
 
         //勝敗がついているか
-        if (false) {
-
-        }
-
+        if (false) {}
         // おけるかどうか
         // おけるなら
         // おける数字のボタンを画面に表示
@@ -255,19 +197,12 @@ function mouseClickEvent(_mousEvent) {
             // 帰ってきた結果(map)を，current_state.mapに代入
             // 描画する．
         }, 200);
-
         rendering(current_state, ctx);
 
         //勝敗がついているか
-        if (false) {
-
-        }
-
+        if (false) {}
     }
 }
-
-
-
 
 /**
  * 
@@ -285,8 +220,7 @@ function calculatePoinerPosition(_mousEvent, _isClick) {
     } else {
         moveOrClick = "Move"
     }
-    console.log(current_state.selected, moveOrClick);
-    //MouseEventの内容から，マウスポインターが現在どのマス目にあるのか調べる．
+    console.log(current_state.selected, moveOrClick);    //MouseEventの内容から，マウスポインターが現在どのマス目にあるのか調べる．
     return current_state.selected;
 }
 
