@@ -153,7 +153,8 @@ a:active {
 .button:hover {
     background-color: #454545;
     color: #fff;
-    transition: 0.4s;
+    transition: 0.1s;
+    border: none;
 }
 
 .url {
@@ -174,12 +175,6 @@ a:active {
     padding: none;
     display: block;
 }
-
-/* 
-.winner {
- 
-
-} */
 
 .winnerWindow {
     /* visibility: visible; */
