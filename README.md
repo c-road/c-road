@@ -4,4 +4,4 @@
 　HTML, CSS, JavaScript を使用しました．リセットCSSとして，[ress](https://github.com/filipelinhares/ress)を使用しました．JavaScriptのライブラリは使用していません．
 
 # URL
-　https://c-road.github.io で遊べます．
+　~~https://c-road.github.io で遊べます．~~  2022年8月25日時点で，まだ未完成です．
