@@ -1,5 +1,5 @@
 /**
- * 
+ * 描画
  * @param {JSON} _state ゲーム盤の状態
  * @param {CanvasRenderingContext2D} _ctx 描画先
  */
@@ -18,11 +18,6 @@ function rendering(_state, _ctx) {
     _ctx.beginPath();
     let [cellX, cellY] = calculateCurrentCell(current_state.selected);
     _ctx.fillRect(cellSize * cellX + 2, cellSize * cellY + 2, cellSize - 4, cellSize - 4);
-
-
-    // _state.map[160] = 5;
-
-
     console.log(_state.map[1]);
     console.log(_state.map);
     console.log("111");
@@ -35,8 +30,6 @@ function rendering(_state, _ctx) {
         }
     }
 }
-
-
 
 /**
  * セル番号からセルの座標を計算（ｘ，ｙ）
@@ -52,7 +45,6 @@ function calculateCurrentCell(_cellNumber) {
     return [cellX, cellY]
 }
 
-
 /**
  * 座標の入力から，roadとLoadを描画する
 * @param {CanvasRenderingContext2D} _ctx コンテキスト（描画するcanvas）
@@ -61,18 +53,6 @@ function calculateCurrentCell(_cellNumber) {
  * @param {number} cellY Y軸方向に何個目のセルか
  */
 function drawRoad(_ctx, roadNumber, cellX, cellY) {
-    /*  
-    if (roadNumber<0){
-        _ctx.fillStyle = "#9b9dcc"
-    }else{
-        _ctx.fillStyle = "#cc9bb4"
-    }
-    console.log("aaaaaaaaa_ctx");
-    _ctx.fillRect(cellSize * cellX + 4, cellSize * cellY + 4, cellSize - 8, cellSize - 8);
-    ctx.fillStyle = "#000000"
-    ctx.font = '38px sans'
-    ctx.fillText(Math.abs(roadNumber), cellX*cellSize +10, cellY*cellSize * 2 - 7);
-    */
     if (Math.abs(roadNumber) === 1000) {
         //Load描画
         drawLoad(_ctx, cellY * 13 + cellX, roadNumber);
@@ -82,7 +62,6 @@ function drawRoad(_ctx, roadNumber, cellX, cellY) {
     } else {
         _ctx.fillStyle = USER2_COLOR;
     }
-
     const numberDigit = String(Math.abs(roadNumber)).length;
     let xGap;
     let yGap;
@@ -93,9 +72,7 @@ function drawRoad(_ctx, roadNumber, cellX, cellY) {
     }
     console.log("x:", xGap + " y:" + yGap);
     ctx.font = '30px sans'
-    ctx.fillText(Math.abs(roadNumber), cellX * cellSize + xGap, cellY * cellSize + yGap);
-
-    // _ctx.fillRect(cellSize * cellX + 4, cellSize * cellY + 4, cellSize - 8, cellSize - 8);
+    ctx.fillText(Math.abs(roadNumber), cellX * cellSize + xGap, cellY * cellSize + yGap);    // _ctx.fillRect(cellSize * cellX + 4, cellSize * cellY + 4, cellSize - 8, cellSize - 8);
 }
 
 /**
@@ -104,23 +81,12 @@ function drawRoad(_ctx, roadNumber, cellX, cellY) {
  * @param {Array} _cellNumber セル番号1
  */
 function drawLoad(_ctx, _cellNumber,roadNumber) {
-    // let cellNumberList = [-13, -1, 1, 13];
-    // cellListIndex = Math.floor(Math.random() * 4);
-
-    if (roadNumber > 0) {
+    if (roadNumber > 0) {    // cellListIndex = Math.floor(Math.random() * 4);    // let cellNumberList = [-13, -1, 1, 13];
         _ctx.fillStyle = LOAD_COLOR1;
     } else {
         _ctx.fillStyle = LOAD_COLOR2;
     }
     _ctx.beginPath();
     let [cellX, cellY] = calculateCurrentCell(_cellNumber);
-    _ctx.fillRect(cellSize * cellX, cellSize * cellY, cellSize, cellSize);
-
-
-    // // _ctx.fillStyle = LOAD_COLOR2;
-    // _ctx.beginPath();
-    // [cellX, cellY] = calculateCurrentCell(_cellNumber + cellNumberList[cellListIndex]);
-    // _ctx.fillRect(cellSize * cellX, cellSize * cellY, cellSize, cellSize);
-
-
+    _ctx.fillRect(cellSize * cellX, cellSize * cellY, cellSize, cellSize);    // // _ctx.fillStyle = LOAD_COLOR2;    // _ctx.beginPath();    // [cellX, cellY] = calculateCurrentCell(_cellNumber + cellNumberList[cellListIndex]);    // _ctx.fillRect(cellSize * cellX, cellSize * cellY, cellSize, cellSize);
 }
