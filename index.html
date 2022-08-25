@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@200;800&display=swap" rel="stylesheet">
-
+    <link
+        href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@200;800&family=Noto+Serif+JP:wght@200&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -19,20 +20,42 @@
         <p>C*-road</p>
     </div>
     <div id="container">
-        <canvas id="game-board" width="351px" height="351px"></canvas>
+        <canvas id="game-board" width="520px" height="520px"></canvas>
+        <!-- <canvas id="game-board"></canvas> -->
     </div>
-    <div id="nav">
+    <!-- <div id="nav">
         <div class="button newGame"></div>
         <div class="button share"></div>
-    </div>
-    <div id="modalArea" class="modalArea">
-        <div id="modalBackground"></div>
-        <div id="modalWrapper">
-            <div id="modalTexts">
-                <p></p>
+    </div> -->
+
+    <div id="modalArea" class="modalArea showModal">
+        <div class="modalBackground"></div>
+        <div class="modalWrapper">
+            <div class="modal">
+                <img src="./img/C-road.png" alt="" width=80%>
+                <!-- <img src="./img/C-road2.png" alt="" width=80%> -->
+                <div class="buttonContainer">
+                    <div id="computer" class="button newGame" onclick="">Computer</div>
+                    <div class="buttonName">対戦相手</div>
+                    <div id="human" class="button newGame">Human</div>
+                </div>
+                <div class="buttonContainer">
+                    <div class="button">
+                        <a href="#" target="_blank" rel="noopener noreferrer">PDF</a>
+                    </div>
+                    <div class="buttonName">遊び方</div>
+                    <div class="button">
+                        <a href="#" target="_blank" rel="noopener noreferrer">Movie</a>
+                    </div>
+                </div>
+                <p class="url">
+                    <a href="https://github.com/c-road/c-road.github.io"
+                        target="_blank">https://github.com/c-road/c-road.github.io</a>
+                </p>
             </div>
         </div>
     </div>
+
     <!-- <div id="numberInputButton"> -->
     <!-- <p>aaaa</p> -->
     <!-- </div> -->
@@ -40,9 +63,39 @@
     <script src="./js/ai.js"></script>
     <script src="./js/rendering.js"></script>
     <script>
-        const context = document.getElementById("game-board").getContext('2d');
-        gameStart(context);
-        console.log(context);
+        function resizeWindow() {
+            let w = document.getElementById("container").width;
+            console.log("width " + w);
+            document.getElementById("game-board").setAttribute("width", w);
+        }
+
+        // window.onresize = resizeWindow;
+        // window.onload = resizeWindow;
+        function clickGameButton(type) {
+            const context = document.getElementById("game-board").getContext('2d');
+            gameStart(context, type);
+            console.log(type + "geme");
+        }
+
+        function demoGame() {
+            const context = document.getElementById("game-board").getContext('2d');
+            gameStart(context, "demo");
+            console.log("demoGame");
+        }
+        // 参考 https://myscreate.com/modal-without-jquery/
+        const modalArea = document.getElementById('modalArea');
+        const computer = document.getElementById('computer');
+        const human = document.getElementById('human');
+        const modalBackground = document.getElementById('modalBackground');
+        const toggle = [computer, human];
+
+        for (let i = 0, len = toggle.length; i < len; i++) {
+            toggle[i].addEventListener('click', function () {
+                modalArea.classList.toggle('showModal');
+            }, false);
+        }
+
+        demoGame();
     </script>
 </body>
 

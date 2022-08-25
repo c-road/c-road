@@ -91,8 +91,9 @@ let current_state = {};
 /**
  * HTML側から実行する関数．ゲームを実行．
  * @param {CanvasRenderingContext2D} _ctx canvas
+ * @param {String} type ゲームのタイプ; human, computer, demo
  */
-function gameStart(_ctx) {
+function gameStart(_ctx,type) {
     ctx = _ctx
     current_state = deepCopy(initial_state);
     // console.log(current_state);
