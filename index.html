@@ -31,27 +31,32 @@
     <div id="modalArea" class="modalArea showModal">
         <div class="modalBackground"></div>
         <div class="modalWrapper">
+            <img src="./img/C-road.png" alt="" width=80%>
             <div class="modal">
-                <img src="./img/C-road.png" alt="" width=80%>
+                <!--使用していた方-->
+                <!-- <img src="./img/C-road.png" alt="" width=80%> -->
+
+
                 <!-- <img src="./img/C-road2.png" alt="" width=80%> -->
+                <div class="buttonName">対戦</div>
                 <div class="buttonContainer">
                     <div id="computer" class="button newGame" onclick="">Computer</div>
-                    <div class="buttonName">対戦</div>
                     <div id="human" class="button newGame">Human</div>
                 </div>
-                <div class="buttonContainer">
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="button">PDF</a>
-                    <div class="buttonName">遊び方</div>
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="button">Movie</a>
+                <div id="share">
+                    <!-- <div class="buttonContainer"> -->
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="">PDF</a>
+                    <div class="">遊び方</div>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="">Movie</a>
                 </div>
                 <div id="share">
                     <!-- <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button button"
                         data-show-count="false" target="_blank">Tweet</a> -->
-                    <a href="https://twitter.com/share?ref_src=https://c-road.github.io" class="twitter-share-button button"
-                        data-show-count="false" target="_blank">Tweet</a>
+                    <a href="https://twitter.com/share?url=https://c-road.github.io" class="twitter-share-button "
+                        data-show-count="false" target="_blank">Twitter</a>
                     <!-- <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
                     <a href="https://social-plugins.line.me/lineit/share?url=https://c-road.github.io" target="_blank"
-                        rel="nofollow noopener noreferrer" class="button">LINE</a>
+                        rel="nofollow noopener noreferrer" class="">LINE</a>
                 </div>
                 <div class="url">
                     <a href="https://github.com/c-road/c-road.github.io"
@@ -65,9 +70,6 @@
         <div id="restartButton" class="restartButton">restart</div>
     </div>
 
-    <!-- <div id="numberInputButton"> -->
-    <!-- <p>aaaa</p> -->
-    <!-- </div> -->
     <script src="./js/main.js"></script>
     <script src="./js/ai.js"></script>
     <script src="./js/rendering.js"></script>
