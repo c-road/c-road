@@ -21,49 +21,42 @@
     </div>
     <div id="container">
         <canvas id="game-board" width="520px" height="520px"></canvas>
-        <!-- <canvas id="game-board"></canvas> -->
     </div>
-    <!-- <div id="nav">
-        <div class="button newGame"></div>
-        <div class="button share"></div>
-    </div> -->
-
     <div id="modalArea" class="modalArea showModal">
         <div class="modalBackground"></div>
         <div class="modalWrapper">
-            <img src="./img/C-road.png" alt="" width=80%>
             <div class="modal">
-                <!--使用していた方-->
-                <!-- <img src="./img/C-road.png" alt="" width=80%> -->
-
-
-                <!-- <img src="./img/C-road2.png" alt="" width=80%> -->
-                <div class="buttonName">対戦</div>
-                <div class="buttonContainer">
-                    <div id="computer" class="button newGame" onclick="">Computer</div>
-                    <div id="human" class="button newGame">Human</div>
+                <div class="modal_title">
+                    <div class="modal_main-title">C*-road</div>
+                    <div class="modal_sub-title">～数字で広がる無限のマス目～</div>
                 </div>
-                <div id="share">
-                    <!-- <div class="buttonContainer"> -->
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="">PDF</a>
-                    <div class="">遊び方</div>
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="">Movie</a>
+                <div class="modal_gameStart">
+                    <div class="modal_gameStart-button" id="computer">対CPU戦</div>
+                    <div class="modal_gameStart-button" id="human">対人戦</div>
                 </div>
-                <div id="share">
-                    <!-- <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button button"
-                        data-show-count="false" target="_blank">Tweet</a> -->
-                    <a href="https://twitter.com/share?url=https://c-road.github.io" class="twitter-share-button "
-                        data-show-count="false" target="_blank">Twitter</a>
-                    <!-- <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
-                    <a href="https://social-plugins.line.me/lineit/share?url=https://c-road.github.io" target="_blank"
-                        rel="nofollow noopener noreferrer" class="">LINE</a>
+                <div class="modal_how-to-play">
+                    <div class="modal_how-to-play-button">ゲームのルール</div>
+                    <!-- <div class="modal_how-to-play-button">Movie</div> -->
                 </div>
-                <div class="url">
-                    <a href="https://github.com/c-road/c-road.github.io"
-                        target="_blank">https://github.com/c-road/c-road.github.io</a>
+                <div class="modal_share">
+                    <!-- <div class="model_share-title"> 共有する</div> -->
+                    <div class="modal_share-button-container">
+                        <div class="modal_share-button"><a
+                                href="http://twitter.com/share?url=https://c-road.github.io&text=C*-road&hashtags=croad"
+                                target="_blank" rel="nofollow noopener noreferrer">Tweetする</a>
+                        </div>
+                        <div class="modal_share-button">
+                            <a href="https://social-plugins.line.me/lineit/share?url=yurukei-career.com" target="_blank"
+                                rel="nofollow noopener noreferrer">LINEで送る</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal_github-url">
+                    <a href="https://github.com/c-road/c-road.github.io">https://github.com/c-road/c-road.github.io</a>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <div id="winnerWindow" class="winnerWindow">
         <div id="winner"></div>
