@@ -53,24 +53,6 @@ a:active {
 
 }
 
-#numberInputButton p {
-    z-index: -10;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    margin: auto;
-    /* display: flex; */
-    /* text-align: center; */
-}
-
-
-#numberInputButton p {
-    margin: auto;
-    text-align: center;
-}
-
 
 .modalArea {
     visibility: hidden;
@@ -82,7 +64,11 @@ a:active {
     position: fixed;
     z-index: 10;
     transition: .4s;
+}
 
+.showModal {
+    visibility: visible;
+    opacity: 1;
 }
 
 .modalBackground {
@@ -94,129 +80,103 @@ a:active {
 }
 
 .modalWrapper {
-
-    /* padding-top: 10px;    追加 */
     text-align: center;
-
-
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    min-width: 300px;
+    ;
     background-color: #eeeeee;
-    border: 1px solid #454545;
-    max-width: 650px;
+    border: 0.61px solid #454545;
 }
 
 
-.showModal {
-    visibility: visible;
-    opacity: 1;
-}
+
 
 .modal {
-    /* display: flex;    追加 */
-    text-align: center;
-    margin-top: 15px;
-}
-
-.buttonName {
-    text-align: center;
-    margin: auto;
     font-family: 'Noto Serif JP', serif;
-    width: 50px;
-}
-
- /* ----もともと使用 */
-.buttonContainer {
     text-align: center;
-    display: flex;
-    justify-content: center;
-    margin: 0px 0;
-}
- /* ---------------------  */
-
-
-/*仮----------
-*/
-
-
-
-/* .buttonContainer::before { */
-/* margin-right: 60%; */
-/* bottom: 50px; */
-/* background-color: #eeeeee; */
-/* position: absolute; */
-/* position: relative; */
-/* content: "対戦モード"; */
-/* } */
-
-
-
-
-.button {
-    width: 100px;
-    padding: 5px 4px;
-    border: solid 0.5px #444444;
-    border-bottom: solid 2px #444444;
-    margin: 1px 7px 7px 7px;
-    cursor: pointer;
-}
-
-.button a {
-    display: block;
-}
-
-.button:hover {
-    background-color: #454545;
-    color: #fff;
-    transition: 0.1s;
-    border: none;
-}
-.smallButton {
-    font-size: 14px;
-    width: 50px;
-    padding: 2px 1px;
-    border: solid 0.5px #444444;
-    border-bottom: solid 2px #444444;
-    margin: 7px 7px;
-    cursor: pointer;
-}
-
-.smallButton a {
-    display: block;
-}
-
-.smallButton:hover {
-    background-color: #454545;
-    color: #fff;
-    transition: 0.1s;
-    border: none;
-}
-
-
-
-
-.url {
-    font-size: 10px;
-    margin: 5px;
-}
-
-#share {
+    padding: 0;
     margin: 15px;
+}
+
+
+.modal_title {
+    border-bottom: 2px solid #000000;
+}
+
+.modal_main-title {
+    font-family: 'BioRhyme', serif;
+    font-size: 50px;
+}
+
+
+/* .modal_sub-title {} */
+
+.modal_gameStart {
+    margin: 10px 10px 0 10px;
     display: flex;
-    /* flex-directioolumn; */
     justify-content: space-around;
-    border: 0.5px dashed #454545;
-    font-size: 15px;
+    /* border: 1px dashed; */
+    /* text-align: ; */
 }
 
-#share a {
+.modal_gameStart-button {
+    width: 6rem;
+    height: 3rem;
+    /* padding:; */
+    line-height: 3rem;
+    border: dashed 0.5px #000000;
+    margin: 15px 15px 0 15px;
+    cursor: pointer;
+}
 
-    padding: none;
+.modal_how-to-play {
+    margin: 10px;
+    /* border: dashed 0.5px #000000; */
+}
+
+.modal_how-to-play-button {
+    margin: 15px;
+    border: dashed 0.5px #000000;
+}
+
+.modal_share {
+    font-size: 12px;
+}
+
+/* .model_share-title {} */
+
+.modal_share-button-container {
+    width :80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal_share-button {
+    width: 7em;
+    border: dashed 0.5px #000000;
+}
+
+.modal_share-button a{
     display: block;
+    width: 100%;
+    height: 100%;
 }
+
+.modal_github-url{
+    font-size: 9px;
+}
+
+
+/*------------------------------------------------------*/
+
+
+
+
+
+
 
 .winnerWindow {
     /* visibility: visible; */
