@@ -85,6 +85,7 @@ function gameStart(_ctx, type) {
     ctx = _ctx
     current_state = deepCopy(initial_state);
     console.log("type: " + type);
+    current_state.type = type;
     // console.log(current_state);
     if (!isConfirmed) {
         isConfirmed = true;
@@ -129,7 +130,7 @@ function configurEventHandlers() {
 /**
  * タッチイベントが起きたときに，それがタップなのかスクロールなのかを判断する．
  */
-function touchEvent() {}
+function touchEvent() { }
 
 /**
  * マウスが動いたときの処理．ポインターのあるセルの色を変える．
@@ -156,29 +157,36 @@ function mouseClickEvent(_mousEvent) {
     } else {
         console.log(current_state.winner);
         let putRoadNumber;
-        if (true) { // 引数 current_state おけるかどうかの判断．
-            current_state.map[current_state.selected]
-            putRoadNumber = window.prompt("このマスに置く道の番号は？ \n " + calculateCurrentCell(current_state.selected));
-            if (putRoadNumber === null) {
-                console.log("value is null");
-            } else if (putRoadNumber === "") {
-                console.log("value is empty");
-            } else {
-                console.log(+putRoadNumber);
-                if (!Number.isInteger(+putRoadNumber)) {
-                    alert("整数を入力してください．");
+        if (current_state.map[current_state.selected] === 0) { // 引数 current_state おけるかどうかの判断．
+            if (true) {
+                current_state.map[current_state.selected]
+                putRoadNumber = window.prompt("このマスに置く道の番号は？ \n " + calculateCurrentCell(current_state.selected));
+                if (putRoadNumber === null) {
+                    console.log("value is null");
+                    putRoadNumber = current_state.map[current_state.selected]
+                } else if (putRoadNumber === "") {
+                    console.log("value is empty");
+                    putRoadNumber = current_state.map[current_state.selected]
+                } else {
+                    console.log(+putRoadNumber);
+                    if (!Number.isInteger(+putRoadNumber)) {
+                        alert("整数を入力してください．");
+                        putRoadNumber = current_state.map[current_state.selected]
+                    }
                 }
+                putRoadNumber = (+putRoadNumber) * current_state.turn;
+                //現在の盤の状況と入力された数値を渡す．　引数 current_state, roadNumber
+                // current_state = 出力
             }
-            putRoadNumber = +putRoadNumber;
-            //現在の盤の状況と入力された数値を渡す．　引数 current_state, roadNumber
-            // current_state = 出力
+        } else {
+            putRoadNumber = current_state.map[current_state.selected]
         }
         //とりあえず描画テスト
         current_state.map[current_state.selected] = putRoadNumber;
         // ここまで
 
         //勝敗がついているか
-        if (false) {}
+        if (false) { }
         // おけるかどうか
         // おけるなら
         // おける数字のボタンを画面に表示
@@ -190,17 +198,20 @@ function mouseClickEvent(_mousEvent) {
         // おけないなら
         // 無視
         rendering(current_state, ctx);
+        current_state.turn = current_state.turn * -1;
 
-        //AIが駒を動かす．
-        setTimeout(() => {
-            // Aiに，current_state.mapを渡す．
-            // 帰ってきた結果(map)を，current_state.mapに代入
-            // 描画する．
-        }, 200);
-        rendering(current_state, ctx);
-
+        if (current_state.type === "computer") {
+            //AIが駒を動かす．
+            setTimeout(() => {
+                // Aiに，current_state.mapを渡す．
+                // 帰ってきた結果(map)を，current_state.mapに代入
+                // 描画する．
+            }, 200);
+            rendering(current_state, ctx);
+            current_state.turn = current_state.turn * -1;
+        }
         //勝敗がついているか
-        if (false) {}
+        if (false) { }
     }
 }
 
