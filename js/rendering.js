@@ -18,9 +18,9 @@ function rendering(_state, _ctx) {
     _ctx.beginPath();
     let [cellX, cellY] = calculateCurrentCell(current_state.selected);
     _ctx.fillRect(cellSize * cellX + 2, cellSize * cellY + 2, cellSize - 4, cellSize - 4);
-    console.log(_state.map[1]);
-    console.log(_state.map);
-    console.log("111");
+    // console.log(_state.map[1]);
+    // console.log(_state.map);
+    // console.log("111");
     for (let x = 0; x < columns; x++) {
         for (let y = 0; y < columns; y++) {
             // console.log("あいう",x, y, _state.map[y * columns + x])
@@ -37,11 +37,11 @@ function rendering(_state, _ctx) {
  * @retun {array}
  */
 function calculateCurrentCell(_cellNumber) {
-    console.log(_cellNumber);
-    console.log(current_state);
+    // console.log(_cellNumber);
+    // console.log(current_state);
     let cellX = _cellNumber % columns | 0;
     let cellY = _cellNumber / columns | 0;
-    console.log(cellX, cellY);
+    // console.log(cellX, cellY);
     return [cellX, cellY]
 }
 
@@ -56,7 +56,7 @@ function drawRoad(_ctx, roadNumber, cellX, cellY) {
     if (Math.abs(roadNumber) === 1000) {
         //Load描画
         drawLoad(_ctx, cellY * 13 + cellX, roadNumber);
-        console.log("Load");
+        // console.log("Load");
     } else if (roadNumber < 0) {
         _ctx.fillStyle = USER1_COLOR;
     } else {
@@ -67,11 +67,16 @@ function drawRoad(_ctx, roadNumber, cellX, cellY) {
     let yGap;
     if (numberDigit == 1) {
         [xGap, yGap] = [11, 30];
+        ctx.font = '30px sans'
     } else if (numberDigit == 2) {
         [xGap, yGap] = [5, 30];
+        ctx.font = '30px sans'
+    } else if (numberDigit == 3){
+        [xGap,yGap] = [0 , 29];
+        ctx.font = '25px sans';
     }
-    console.log("x:", xGap + " y:" + yGap);
-    ctx.font = '30px sans'
+    // console.log("x:", xGap + " y:" + yGap);
+
     ctx.fillText(Math.abs(roadNumber), cellX * cellSize + xGap, cellY * cellSize + yGap);    // _ctx.fillRect(cellSize * cellX + 4, cellSize * cellY + 4, cellSize - 8, cellSize - 8);
 }
 
@@ -80,7 +85,7 @@ function drawRoad(_ctx, roadNumber, cellX, cellY) {
  * @param {CanvasRenderingContext2D} _ctx 描画先のcanvas
  * @param {Array} _cellNumber セル番号1
  */
-function drawLoad(_ctx, _cellNumber,roadNumber) {
+function drawLoad(_ctx, _cellNumber, roadNumber) {
     if (roadNumber > 0) {    // cellListIndex = Math.floor(Math.random() * 4);    // let cellNumberList = [-13, -1, 1, 13];
         _ctx.fillStyle = LOAD_COLOR1;
     } else {
