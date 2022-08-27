@@ -23,6 +23,7 @@
         <canvas id="game-board" width="520px" height="520px"></canvas>
     </div>
     <div id="modalArea" class="modalArea showModal">
+        <!-- <div id="modalArea" class="modalArea"> -->
         <div class="modalBackground"></div>
         <div class="modalWrapper">
             <div class="modal">
@@ -31,8 +32,8 @@
                     <div class="modal_sub-title">～数字で広がる無限のマス目～</div>
                 </div>
                 <div class="modal_gameStart">
-                    <div class="modal_gameStart-button" id="computer">対CPU戦</div>
-                    <div class="modal_gameStart-button" id="human">対人戦</div>
+                    <div class="modal_gameStart-button" id="human">スタート</div>
+                    <!-- <div class="modal_gameStart-button" id="computer">ランダムなCPU</div> -->
                 </div>
                 <div class="modal_how-to-play">
                     <div class="modal_how-to-play-button">ゲームのルール</div>
@@ -46,8 +47,8 @@
                                 target="_blank" rel="nofollow noopener noreferrer">Tweetする</a>
                         </div>
                         <div class="modal_share-button">
-                            <a href="https://social-plugins.line.me/lineit/share?url=https://c-road.github.io/" target="_blank"
-                                rel="nofollow noopener noreferrer">LINEで送る</a>
+                            <a href="https://social-plugins.line.me/lineit/share?url=https://c-road.github.io/"
+                                target="_blank" rel="nofollow noopener noreferrer">LINEで送る</a>
                         </div>
                     </div>
                 </div>
@@ -63,8 +64,9 @@
         <div id="restartButton" class="restartButton">restart</div>
     </div>
 
+    <div id="computer"></div>
     <script src="./js/main.js"></script>
-    <script src="./js/ai.js"></script>
+    <script src="./js/game.js"></script>
     <script src="./js/rendering.js"></script>
     <script>
         function resizeWindow() {
